@@ -1,0 +1,46 @@
+Unseal Key: C2rB10VLg1x1ZUXiCmT/bRmIlC0aetLjWJd9aQ9TyyM=
+Root Token: hvs.7fhtvM1hFvBPPAa540Hohq4H
+
+export VAULT_TOKEN="hvs.7fhtvM1hFvBPPAa540Hohq4H"
+
+vault secrets enable database
+
+vault write database/config/my-postgresql-database \
+    plugin_name=postgresql-database-plugin \
+    allowed_roles="my-role" \
+    connection_url="postgresql://{{username}}:{{password}}@postgres:5432/" \
+    username="postgres" \
+    password="password"
+
+
+vault write database/roles/my-role \
+    db_name=my-postgresql-database \
+    creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; \
+        GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";" \
+    default_ttl="1m" \
+    max_ttl="24h"
+
+vault read database/creds/my-role
+
+  CREATE TABLE IF NOT EXISTS public.dao_class
+(
+    "ACCOUNTNUMBER" text,
+    epk_id text,
+    "FieldOne" text,
+    "FIELD_TWO" text
+)
+
+
+INSERT INTO public.dao_class(
+	"ACCOUNTNUMBER", epk_id, "FieldOne", "FIELD_TWO")
+	select md5(random()::text), md5(random()::text), md5(random()::text), md5(random()::text) from generate_Series(1,5) s;
+
+
+
+
+
+
+ПРОВЕРИТЬ
+
+VAULT_TOKEN=hvs.7fhtvM1hFvBPPAa540Hohq4H vault kv put secret/datamart datamart.username=vaultUser datamart.password=vaultPassword
+VAULT_TOKEN=hvs.7fhtvM1hFvBPPAa540Hohq4H vault kv get secret/datamart

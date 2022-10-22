@@ -1,0 +1,27 @@
+#spring:
+#  cloud:
+#    vault:
+#      scheme: http
+#      token: hvs.omfmxHoA80L40AuJ3tWysy1j
+#      authentication: token
+#      #      database:
+#      #        enabled: true
+#      #        role: my-role
+#      #        backend: database
+#      kv:
+#        application-name: datamart
+#  config:
+#    import: vault://
+#  datasource:
+#    url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres}
+#    username: ${DB_LOGIN:postgres}
+#    password: ${DB_PASSWORD:password}
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+#    show-sql: true
+#
+#datamart:
+#  url: AppUrl
+#  username: AppUsername
+#  password: AppPassword

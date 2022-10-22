@@ -1,0 +1,29 @@
+#spring:
+#  cloud:
+#    vault:
+#      scheme: http
+#      token: hvs.iImG3Ji1eE1JTEHdHIRtkS1Z
+#      authentication: token
+#      #      database:
+#      #        enabled: true
+#      #        role: my-role
+#      #        backend: database
+#      kv:
+#        application-name: datamart
+#  config:
+#    import: vault://
+#  datasource:
+#    url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres}
+#    username: ${DB_LOGIN:postgres}
+#    password: ${DB_PASSWORD:password}
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+#    show-sql: true
+#
+#datamart:
+#  url: OuterAppUrl
+#  username: OuterAppUsername
+#  password: OuterAppPassword
+#
+##-Dspring.config.location=F:\IdeaProjects\hashicorp\application.yml
